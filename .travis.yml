@@ -8,3 +8,17 @@ before_install:
 
 script:
   - docker run ankurdocker12/docker-readt npm run test -- --coverage
+
+
+deploy:
+  provider: elasticbeanstalk
+  region: "ap-south-1"
+  app: "docker-react"
+  env: "Docker-env"
+  bucket_name: "elasticbeanstalk-bucket"
+  bucket_path: "docker-react"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"  
